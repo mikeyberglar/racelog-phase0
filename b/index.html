@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>RaceLog Phase 0b</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0c2d28">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="RaceLog P0b">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="wrap">
+  <header>
+    <p class="eyebrow">RaceLog · Phase 0b</p>
+    <h1>Sync test</h1>
+    <p class="lede">A throwaway test app with no real setup data. It checks that entries saved with no signal reach a server later, with nothing lost and nothing doubled.</p>
+    <div class="pills">
+      <span id="mode" class="pill">Checking</span>
+      <span id="conn" class="pill">Checking</span>
+    </div>
+    <p id="config-warn" class="banner" hidden>Server details are not set yet. The app saves on this device only until they are added.</p>
+  </header>
+
+  <section class="tiles" aria-label="Save status">
+    <div class="tile"><b id="t-local">0</b><span>On this device</span></div>
+    <div class="tile"><b id="t-conf">0</b><span>Confirmed on server</span></div>
+    <div class="tile" id="tile-wait"><b id="t-wait">0</b><span>Waiting to sync</span></div>
+  </section>
+
+  <section class="card" id="card-auth">
+    <h2>Account</h2>
+    <p id="authstate" class="lede">Not signed in.</p>
+    <form id="authform" autocomplete="on">
+      <label for="email">Email
+        <input id="email" type="email" autocomplete="username" inputmode="email" autocapitalize="none" spellcheck="false">
+      </label>
+      <label for="password">Password (at least 6 characters)
+        <input id="password" type="password" autocomplete="current-password">
+      </label>
+      <div class="row">
+        <button class="btn" type="submit" id="btn-signin">Sign in</button>
+        <button class="btn alt" type="button" id="btn-signup">Create account</button>
+      </div>
+    </form>
+    <button class="btn alt" type="button" id="btn-signout" hidden>Sign out</button>
+    <p class="msg" id="authmsg" aria-live="polite"></p>
+  </section>
+
+  <form id="f" class="card" autocomplete="off">
+    <h2>Save a test entry</h2>
+    <label for="note">Entry text
+      <input id="note" type="text" placeholder="e.g. RR 8.5 psi, track tacky">
+    </label>
+    <button class="btn" type="submit">Save entry</button>
+    <label class="check" for="simlost">
+      <input id="simlost" type="checkbox">
+      <span>Simulate a lost reply on the next upload</span>
+    </label>
+    <p class="msg" id="msg" aria-live="polite"></p>
+  </form>
+
+  <div class="row">
+    <button class="btn alt" type="button" id="btn-sync">Sync now</button>
+    <button class="btn alt" type="button" id="btn-backup">Copy backup text</button>
+  </div>
+
+  <section class="card">
+    <h2>Entries <span id="count" class="count">0</span></h2>
+    <p id="serverinfo" class="lede"></p>
+    <ul id="list" class="entries"></ul>
+  </section>
+
+  <section class="card">
+    <h2>How to run the test</h2>
+    <ol class="steps">
+      <li>Open this page once in Chrome, then Share, Add to Home Screen. From then on, use only the new home screen icon.</li>
+      <li>Create an account, then save one entry with signal. It should turn Confirmed on server within a few seconds.</li>
+      <li>Turn on airplane mode. Save three entries. They should read On device only.</li>
+      <li>Close the app fully, then open it again, still offline. All four entries should be listed.</li>
+      <li>Turn airplane mode off. Wait up to 20 seconds or tap Sync now. All four should read Confirmed with no repeats.</li>
+      <li>Tick Simulate a lost reply, save one entry, then tap Sync now twice. The entry should end Confirmed once, with Possible repeats at 0.</li>
+    </ol>
+    <p class="lede">Report which step failed and copy the event log below.</p>
+  </section>
+
+  <details class="card" open>
+    <summary>Event log <span id="ver" class="count"></span></summary>
+    <button class="btn alt small" type="button" id="btn-copylog">Copy event log</button>
+    <ol class="log" id="log"></ol>
+  </details>
+</main>
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
