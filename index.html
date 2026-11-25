@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>RaceLog Phase 0</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f1a2b">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="RaceLog P0">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="wrap">
+  <header>
+    <p class="eyebrow">RaceLog · Phase 0</p>
+    <h1>Offline install test</h1>
+    <p class="lede">A throwaway test app. It holds no real setup data. It checks whether an installed web app on your iPhone opens with no signal and keeps its entries.</p>
+    <span id="mode" class="pill">Checking</span>
+  </header>
+
+  <section class="card" aria-labelledby="h-status">
+    <h2 id="h-status">What this phone is doing</h2>
+    <dl id="status" class="status"></dl>
+  </section>
+
+  <form id="f" class="card" autocomplete="off">
+    <h2>Save a test entry</h2>
+    <label for="note">Entry text
+      <input id="note" type="text" placeholder="e.g. RR 8.5 psi, track tacky">
+    </label>
+    <button class="btn" type="submit">Save entry</button>
+    <p class="msg" id="msg" aria-live="polite"></p>
+  </form>
+
+  <section class="card">
+    <h2>Saved entries <span id="count" class="count">0</span></h2>
+    <ul id="list" class="entries"></ul>
+    <button class="btn alt" type="button" id="backup">Copy backup text</button>
+  </section>
+
+  <section class="card">
+    <h2>How to run the test</h2>
+    <ol class="steps">
+      <li>On your iPhone, open this page in Chrome. Tap Share, then Add to Home Screen. If Chrome does not offer it, tell me. We will try Safari.</li>
+      <li>Open the app from its home screen icon. The top badge should read "Running as installed app".</li>
+      <li>Save two entries. Check the status list: service worker active, offline copy ready.</li>
+      <li>Turn on airplane mode. Close the app fully, then open it again. It should load and show both entries.</li>
+      <li>Turn airplane mode off. Leave the app alone for 7 days or more, then open it again. Check First opened is unchanged and the entries are still there.</li>
+    </ol>
+    <p class="lede">Report which step failed and what the status list says.</p>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
