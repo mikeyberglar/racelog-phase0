@@ -1,0 +1,16 @@
+{
+  "id": "/racelog-phase0/b/",
+  "name": "RaceLog Phase 0b",
+  "short_name": "RaceLog P0b",
+  "description": "Sync test for RaceLog. Holds no real data.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0c2d28",
+  "theme_color": "#0c2d28",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
